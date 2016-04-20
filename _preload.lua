@@ -8,6 +8,11 @@
 	local p = premake
 	local api = p.api
 
+--
+-- To avoid vstool.lua re-including _preload
+--
+	p.extensions.vstool = true
+
 
 --
 -- Register the vs-tool module
@@ -20,7 +25,7 @@
 		"OutputBC",
 	})
 
-	if not premake.fields["clangpath"] then
+	if not p.fields["clangpath"] then
 		api.register {
 			name = "clangpath",
 			scope = "config",
@@ -29,7 +34,7 @@
 		}
 	end
 
-	if not premake.fields["mingwpath"] then
+	if not p.fields["mingwpath"] then
 		api.register {
 			name = "mingwpath",
 			scope = "config",
@@ -38,7 +43,7 @@
 		}
 	end
 
-	if not premake.fields["staticlibformat"] then
+	if not p.fields["staticlibformat"] then
 		api.register {
 			name = "staticlibformat",
 			scope = "config",

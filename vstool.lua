@@ -1,20 +1,28 @@
 
---
--- Create an vstool namespace to isolate the additions
---
-
 	local p = premake
-
-	p.modules.vstool = {}
-
-	local m = p.modules.vstool
-	m._VERSION = "0.0.1"
 
 	local sln2005 = p.vstudio.sln2005
 	local vc2010 = p.vstudio.vc2010
 	local vstudio = p.vstudio
 	local project = p.project
 	local config = p.config
+
+
+--
+-- always include _preload so that the module works even when not embedded.
+--
+	if premake.extensions == nil or premake.extensions.vstool == nil then
+		include ( "_preload.lua" )
+	end
+
+
+--
+-- Create an vstool namespace to isolate the additions
+--
+	p.modules.vstool = {}
+
+	local m = p.modules.vstool
+	m._VERSION = "0.0.1"
 
 
 --
